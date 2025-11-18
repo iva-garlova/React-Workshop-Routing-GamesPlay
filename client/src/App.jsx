@@ -1,4 +1,5 @@
 
+import { Routes, Route } from 'react-router'
 import './App.css'
 import Header from './components/Header/Header'
 import Home from './components/home/Home'
@@ -11,7 +12,10 @@ function App() {
       <Header />
 
       <main id="main-content">
-        <Home />
+        <Routes>
+          <Route path='/' element={<Home />} />
+        </Routes>
+        
       </main>
     </div>
   )
