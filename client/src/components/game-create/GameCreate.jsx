@@ -1,7 +1,18 @@
+import gameServise from "../../services/gameServise";
+import { useNavigate } from 'react-router'
+
 export default function GameCreate() {
+    const navigate = useNavigate();
+
+    const submitAction = async (formData) => {
+        const gameData = Object.fromEntries(formData);
+
+        await gameServise.create(gameData);
+        navigate('/games');
+    }
     return (
-           <section id="create-page" className="auth">
-            <form id="create">
+        <section id="create-page" className="auth">
+            <form id="create" action={submitAction}>
                 <div className="container">
 
                     <h1>Create Game</h1>
