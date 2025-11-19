@@ -9,9 +9,15 @@ import GameEdit from './components/game-edit/GameEdit'
 import GameDetails from './components/game-details/GameDetails'
 import Games from './components/games/Games'
 import Register from './components/register/Register'
+import { useState } from 'react'
 
 
 function App() {
+  const [email, setEmail] = useState();
+
+  const userLoginHalndler = (email) => {
+   setEmail(email);
+  }
 
   return (
     <div id='box'>
@@ -20,7 +26,7 @@ function App() {
       <main id="main-content">
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
+          <Route path='/login' element={<Login onLogin={userLoginHalndler}/>} />
           <Route path='/register' element={<Register />} />
           <Route path='/games/create' element={<GameCreate />} />
           <Route path='/games/:gameId/details' element={<GameDetails />} />
