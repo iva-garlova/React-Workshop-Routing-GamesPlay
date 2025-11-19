@@ -12,5 +12,8 @@ export default {
         const  result = await request.get(baseUrl);
         const games = Object.values(result);
         return games;
+    },
+    getOne(gameId) {
+     return request.get(`${baseUrl}/${gameId}`);
     }
 }
