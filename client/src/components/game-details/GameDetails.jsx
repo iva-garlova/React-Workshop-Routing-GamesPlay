@@ -4,20 +4,24 @@ import { useNavigate, useParams } from 'react-router'
 import gameServise from '../../services/gameServise';
 import CommentsShow from '../commentsShow/CommentsShow';
 import CommentsAdd from '../commentsAdd/CommentsAdd';
+import commentServise from '../../services/commentServise';
 
 export default function GameDetails({
     email,
 }) {
     const navigate = useNavigate();
     const [game, setGame] = useState({});
+    const [comments, setComments] = useState([]);
     const {gameId} = useParams();
 
     useEffect(() =>{
-        (async () => {
-            const result = await gameServise.getOne(gameId);
-            setGame(result);
-        })();
+      gameServise.getOne(gameId)
+      .then(setGame);
+
+      commentServise.getAll(gameId)
+      .then(setComments)
     }, [gameId]);
+
     const gameDeletelickHandler = async () =>{
     const hasConfirmed = confirm(`Are you sure you want to delete ${game.title} game?`);
     
@@ -28,6 +32,9 @@ export default function GameDetails({
     navigate('/games')
 
     };
+    const commentsCreateHandler = (newComment) => {
+    setComments(state => [...state, newComment]);
+    }
 
     return (
          <section id="game-details">
@@ -45,7 +52,7 @@ export default function GameDetails({
                     {game.summary}
                 </p>
 
-               <CommentsShow/>
+               <CommentsShow comments={comments}/>
 {/* 
                 <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
                 <div className="buttons">
@@ -58,7 +65,10 @@ export default function GameDetails({
                 </div>
             </div>
 
-          <CommentsAdd email={email} gameId={gameId}/>
+          <CommentsAdd 
+          email={email} 
+          gameId={gameId}
+          onCreate={commentsCreateHandler}/>
         </section>
     );
 }
