@@ -13,5 +13,13 @@
         "imageUrl": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTPtE-uQmT5CT3Qmjs2_vMJI-cSjHfijHCortl7KwVLZjpjg7hv",
         "summary": "News, mods, tutorials, support & more: Get all important information about the popular simulation series by publisher & developer GIANTS Software. Get the games and additional content on our official store and join our engaged community - on the forums, Discord & Social Media. Have fun on virtual fields!",
         "_id": "ad790293-4159-4afa-9a07-11fb4aeb589e"
+    },
+    "6d14e204-8a0a-491e-a25e-9cfd8cdff790": {
+        "title": "Call of Duty: Modern Warfare III",
+        "category": "video game",
+        "maxLevel": "8887",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Call_of_Duty_MWIII.jpg",
+        "summary": "Call of Duty: Modern Warfare III is a 2023 first-person shooter game developed by Sledgehammer Games and published by Activision. It is the twentieth installment of the Call of Duty series and is the third entry in the rebooted Modern Warfare sub-series, following Call of Duty: Modern Warfare II. ",
+        "_id": "6d14e204-8a0a-491e-a25e-9cfd8cdff790"
     }
 }
