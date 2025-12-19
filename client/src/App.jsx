@@ -13,11 +13,11 @@ import { useState } from 'react'
 
 
 function App() {
-  const [email, setEmail] = useState();
+  const [authData, setAuthData] = useState({});
 
-  const userLoginHalndler = (authData) => {
-   setEmail(authData.email);
-   console.log(authData);
+  const userLoginHalndler = (resultData) => {
+   setAuthData(resultData);
+ 
    
   }
 
@@ -31,7 +31,7 @@ function App() {
           <Route path='/login' element={<Login onLogin={userLoginHalndler}/>} />
           <Route path='/register' element={<Register />} />
           <Route path='/games/create' element={<GameCreate />} />
-          <Route path='/games/:gameId/details' element={<GameDetails email={email}/>} />
+          <Route path='/games/:gameId/details' element={<GameDetails email={authData.email}/>} />
           <Route path='/games/:gameId/edit' element={<GameEdit />} />
           <Route path='/games/edit' element={<GameEdit />} />
           <Route path='/games' element={<Games />} />
