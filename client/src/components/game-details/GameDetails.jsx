@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router'
 import { useNavigate, useParams } from 'react-router'
 import gameServise from '../../services/gameServise';
 import CommentsShow from '../commentsShow/CommentsShow';
 import CommentsAdd from '../commentsAdd/CommentsAdd';
 import commentServise from '../../services/commentServise';
+import { UserContext } from '../../contexts/UserContext.js';
 
-export default function GameDetails({
-    email,
-}) {
+export default function GameDetails() {
     const navigate = useNavigate();
+    const { email } = useContext(UserContext);
     const [game, setGame] = useState({});
     const [comments, setComments] = useState([]);
     const {gameId} = useParams();
