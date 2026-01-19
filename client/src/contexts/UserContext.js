@@ -6,4 +6,5 @@ email: '',
 userName: '', 
 accessToken: '',
 userLoginHandler: () => null,
+userLogoutHandler: () => null,
 });

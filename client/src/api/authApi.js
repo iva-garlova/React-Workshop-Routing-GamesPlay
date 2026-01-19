@@ -1,5 +1,5 @@
 // import { useEffect, useRef } from "react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import request from "../utils/request"
 import { UserContext } from "../contexts/UserContext";
 
@@ -38,17 +38,29 @@ export const userRegister = () => {
 };
 
 export const useLogout = () => {
+    const {accessToken, userLogoutHandler} = useContext(UserContext);
 
-    const {accessToken} = useContext(UserContext)
+    useEffect(() => {
 
+        if(!accessToken){
+            return;
+        }
+    
     const options = {
         headers: {
             'X-Authorization': accessToken
         }
-    }
-    const logout = ()=>  request.get(`${baseUrl}/logout`,null, options)
-    
+    };
+       request.get(`${baseUrl}/logout`,null, options)
+       .then(userLogoutHandler);
+
+}, [accessToken, userLogoutHandler]);
+
     return {
-        logout,
+        isLoggedOut: !!accessToken,
     }
+
+
+    
+   
 }
