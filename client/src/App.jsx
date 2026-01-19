@@ -13,6 +13,7 @@ import GameDetails from './components/game-details/GameDetails'
 import Games from './components/games/Games'
 import Register from './components/register/Register'
 import { useState } from 'react'
+import Logout from './components/logout/Logout.jsx'
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           <Route path='/games/:gameId/edit' element={<GameEdit />} />
           <Route path='/games/edit' element={<GameEdit />} />
           <Route path='/games' element={<Games />} />
+          <Route path='/logout' element={<Logout />} />
         </Routes>
         
       </main>
