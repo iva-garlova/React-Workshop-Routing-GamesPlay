@@ -15,30 +15,28 @@ export default {
     //     const games = Object.values(result);
     //     return games;
     // },
-    getOne(gameId) {
-     return request.get(`${baseUrl}/${gameId}`);
-    },
+    // getOne(gameId) {
+    //  return request.get(`${baseUrl}/${gameId}`);
+    // },
     delete(gameId){
         return request.delete(`${baseUrl}/${gameId}`);
     },
     edit(gameId, gameData){
  return request.put(`${baseUrl}/${gameId}`, {...gameData, _id: gameId})
     }
-}
+};
 
 export const useGames = () => {
     const [games, setGames] = useState([]);
-    
+
     useEffect(() => {
          request.get(baseUrl)
          .then(setGames);
     }, []);
 
-    return {
-        games,
-    };
+    return { games };
 
-}
+};
 
 export const userCreateGame = () => {
     const { accessToken } = useContext(UserContext);
@@ -52,7 +50,16 @@ export const userCreateGame = () => {
     const create = (gameData) => 
           request.post(baseUrl, gameData, options);
     
-    return {
-        create,
-    }
-}
+    return { create }
+};
+
+export const useOneGame = (gameId) => {
+    const [game, setGame] = useState({});
+
+    useEffect(() => {
+        request.get(`${baseUrl}/${gameId}`)
+        .then(setGame);
+    }, [gameId]);
+
+    return { game };
+};
