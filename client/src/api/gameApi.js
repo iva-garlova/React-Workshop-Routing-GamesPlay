@@ -1,30 +1,10 @@
 import {  useEffect, useState } from "react";
-import request from "../utils/request";
 import useAuth from "../hooks/useAuth";
+import request from "../utils/request";
 
 
 const baseUrl = 'http://localhost:3030/data/games';
 
-export default {
-    //  create(gameData) {
-    //     return request.post(baseUrl, gameData);
-     
-    // },
-    // async getAll() {
-    //     const  result = await request.get(baseUrl);
-    //     const games = Object.values(result);
-    //     return games;
-    // },
-    // getOne(gameId) {
-    //  return request.get(`${baseUrl}/${gameId}`);
-    // },
-    delete(gameId){
-        return request.delete(`${baseUrl}/${gameId}`);
-    },
-    edit(gameId, gameData){
- return request.put(`${baseUrl}/${gameId}`, {...gameData, _id: gameId})
-    }
-};
 
 
 export const useGames = () => {
@@ -39,12 +19,12 @@ export const useGames = () => {
 
 };
 
-export const userCreateGame = () => {
-    const { options } = useAuth();
+export const useCreateGame = () => {
+    const { request } = useAuth();
 
 
     const create = (gameData) => 
-          request.post(baseUrl, gameData, options);
+          request.post(baseUrl, gameData);
     
     return { create }
 };
@@ -61,5 +41,22 @@ export const useOneGame = (gameId) => {
 };
 
 export const useEditGame = () => {
+const {request} = useAuth();
 
-}
+const edit = (gameId, gameData) =>
+     request.put(`${baseUrl}/${gameId}`, {...gameData, _id: gameId})
+    
+    return {
+        edit, 
+    }
+};
+
+export const useDelete = () => {
+const {request} = useAuth();
+
+const deleteGame = (gameId) =>
+        request.delete(`${baseUrl}/${gameId}`);
+     return {
+         deleteGame,
+     }
+};

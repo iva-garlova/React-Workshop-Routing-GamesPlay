@@ -1,4 +1,4 @@
-import { userCreateGame } from "../../api/gameApi";
+import { useCreateGame } from "../../api/gameApi";
 // import gameServise from "../../services/gameServise";
 import { useNavigate } from 'react-router'
 
@@ -6,7 +6,7 @@ export default function GameCreate() {
 
 
     const navigate = useNavigate();
-    const { create } = userCreateGame();
+    const { create } = useCreateGame();
 
     const submitAction = async (formData) => {
         const gameData = Object.fromEntries(formData);

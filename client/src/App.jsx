@@ -17,7 +17,12 @@ import Logout from './components/logout/Logout.jsx'
 
 
 function App() {
-  const [authData, setAuthData] = useState({});
+  const [authData, setAuthData] = useState({
+     _id: '',
+  email: '',
+  userName: '',
+  accessToken: '',
+  });
 
   const userLoginHandler = (resultData) => {
    setAuthData(resultData);

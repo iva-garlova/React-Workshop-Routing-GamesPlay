@@ -3,13 +3,15 @@ import request from "../utils/request";
 const baseUrl = 'http://localhost:3030/jsonstore/comments';
 
 export default {
-    create(email, gameId,  comment) {
-        return request.post(baseUrl, { email, gameId,  comment });
+    create(email, gameId, comment) {
+        return request.post(baseUrl, { email, gameId, comment });
     },
-    async getAll(gameId){
-    const comments = await request.get(`${baseUrl}`);
-    const gameComments = Object.values(comments).filter(comment => comment.gameId === gameId);
 
-    return gameComments;
+    async getAll(gameId) {
+        const comments = await request.get(baseUrl) || {}; // fallback to empty object
+        const gameComments = Object.values(comments).filter(
+            comment => comment.gameId === gameId
+        );
+        return gameComments;
     }
 };
